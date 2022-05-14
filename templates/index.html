@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+        />
+
+        <title>TDraw - Easy & simple way to create a picture.</title>
+
+        <!-- Include bootstrap css -->
+        <link
+            rel="stylesheet"
+            href="{{ url_for('static', filename='lib/css/bootstrap.min.css') }}"
+        />
+        <link
+            rel="stylesheet"
+            href="{{ url_for('static', filename='src/css/notify.css') }}"
+        />
+        <link
+            rel="stylesheet"
+            href="{{ url_for('static', filename='src/css/savepicture.css') }}"
+        />
+        <link
+            rel="stylesheet"
+            href="{{ url_for('static', filename='src/css/default.css') }}"
+        />
+
+        <script src="{{ url_for('static', filename='lib/js/d3.v5.min.js') }}">
+            // Include d3 library for visualization
+        </script>
+
+        <script
+            src="{{ url_for('static', filename='lib/js/saveSvgAsPng.js') }}"
+        >
+            // Include saveSvgAsPng library for save picture
+        </script>
+
+        <script>
+            // Script check if mobile or desktop
+            if (window.outerWidth < 500) {
+                window.location.replace('/mobile')
+            }
+        </script>
+    </head>
+
+    <body>
+        <div id="default-notify" class="alert alert-success"></div>
+
+        <!-- Menu for save picture mode. -->
+        <div id="savepicture-panel">
+            <div id="cancel-save">[X]</div>
+            <input
+                value="myPicture"
+                id="fileName"
+                class="form-control-sm mb-2"
+                type="text"
+                placeholder="File Name Here"
+            />
+            <br />
+            <input id="transparent" type="checkbox" />Transparent Background<br />
+            <div id="screenshot" class="btn btn-outline-primary btn-sm mt-2">
+                Save
+            </div>
+        </div>
+
+        <div class="container-fluid">
+            <!-- Options -->
+            <form class="form-inline mt-1">
+                <div class="form-group">
+                    <!-- Color Picker -->
+                    <select
+                        class="form-control-sm"
+                        id="color-picker"
+                        data-toggle="tooltip"
+                        data-placement="bottom"
+                        title="Color Picker"
+                    >
+                        {% for color in colors %} {% if color == 'black' %}
+                        <option
+                            style="color: {{ color }}"
+                            value="{{ color }}"
+                            selected="selected"
+                        >
+                            {{ color.capitalize() }}
+                        </option>
+                        {% else %}
+                        <option style="color: {{ color }}" value="{{ color }}">
+                            {{ color.capitalize() }}
+                        </option>
+                        {% endif %} {% endfor %}
+                    </select>
+
+                    <!-- Background Color Picker -->
+                    <select
+                        class="form-control-sm ml-2"
+                        id="bgcolor-picker"
+                        data-toggle="tooltip"
+                        data-placement="bottom"
+                        title="Background Color Picker"
+                    >
+                        {% for color in colors %} {% if color == 'white' %}
+                        <option
+                            style="color: {{ color }}"
+                            value="{{ color }}"
+                            selected="selected"
+                        >
+                            {{ color.capitalize() }}
+                        </option>
+                        {% else %}
+                        <option style="color: {{ color }}" value="{{ color }}">
+                            {{ color.capitalize() }}
+                        </option>
+                        {% endif %} {% endfor %}
+                    </select>
+
+                    <!-- Thickness Picker -->
+                    <select
+                        class="form-control-sm ml-2"
+                        id="thickness-picker"
+                        data-toggle="tooltip"
+                        data-placement="bottom"
+                        title="Thickness Picker"
+                    >
+                        {% for thickness in thickness %} {% if thickness == '3'
+                        %}
+                        <option value="{{ thickness }}" selected="selected">
+                            {{ thickness }}
+                        </option>
+                        {% else %}
+                        <option value="{{ thickness }}">{{ thickness }}</option>
+                        {% endif %} {% endfor %}
+                    </select>
+
+                    <!-- Time Delay for undo picker -->
+                    <select
+                        class="form-control-sm ml-2"
+                        id="delaytime-picker"
+                        data-toggle="tooltip"
+                        data-placement="bottom"
+                        title="Time Delay on Auto Undo Mode"
+                    >
+                        {% for time_delay in time_delays %} {% if time_delay ==
+                        '200'%}
+                        <option value="{{ time_delay }}" selected="selected">
+                            {{ time_delay }}ms
+                        </option>
+                        {% else %}
+                        <option value="{{ time_delay }}">
+                            {{ time_delay }}ms
+                        </option>
+                        {% endif %} {% endfor %}
+                    </select>
+
+                    {% for btn in buttons %}
+                    <div
+                        id="{{ btn.getID() }}"
+                        class="btn {{ btn.getClassName() }} btn-sm ml-2"
+                    >
+                        {{ btn.getContent() }}
+                    </div>
+                    {% endfor %}
+                </div>
+            </form>
+            <!-- endOptions -->
+        </div>
+
+        <svg id="draw" class="mt-2">
+            <!-- Scalable Vector Graphic -->
+        </svg>
+
+        <input type="checkbox" id="fullscreen" />
+    </body>
+
+    <!-- Put main javascript at the bottom to make sure it actually works. -->
+    <script src="{{ url_for('static', filename='src/js/draw.js') }}"></script>
+    <script src="{{ url_for('static', filename='src/js/takescreenshot.js') }}"></script>
+    <script src="{{ url_for('static', filename='src/js/commit.js') }}"></script>
+    <script src="{{ url_for('static', filename='src/js/notify.js') }}"></script>
+    <script src="{{ url_for('static', filename='src/js/userconfig.js') }}"></script>
+    <script src="{{ url_for('static', filename='src/js/onchange.js') }}"></script>
+    <script src="{{ url_for('static', filename='src/js/fullscreen.js') }}"></script>
+</html>

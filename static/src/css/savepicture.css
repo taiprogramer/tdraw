@@ -1,0 +1,16 @@
+#savepicture-panel {
+    position: fixed;
+    background-color: azure;
+    top: 0.57rem;
+    right: 0.57rem;
+    text-align: center;
+    display: none;
+    padding: 3rem 2rem;
+    border: 2px solid cornflowerblue;
+    width: 21rem;
+}
+#cancel-save {
+    position: fixed;
+    top: 0.57rem;
+    right: 0.68rem;
+}
