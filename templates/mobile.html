@@ -13,7 +13,7 @@
         <!-- Include bootstrap css -->
         <link
             rel="stylesheet"
-            href="{{ url_for('static', filename='lib/css/bootstrap.min.css') }}"
+            href="{{ url_for('static', filename='deps/css/bootstrap.min.css') }}"
         />
         <link
             rel="stylesheet"
@@ -32,12 +32,12 @@
             href="{{ url_for('static', filename='src/css/default.css') }}"
         />
 
-        <script src="{{ url_for('static', filename='lib/js/d3.v5.min.js') }}">
+        <script src="{{ url_for('static', filename='deps/js/d3.v5.min.js') }}">
             // Include d3 library for visualization
         </script>
 
         <script
-            src="{{ url_for('static', filename='lib/js/saveSvgAsPng.js') }}"
+            src="{{ url_for('static', filename='deps/js/saveSvgAsPng.js') }}"
         >
             // Include saveSvgAsPng library for save picture
         </script>
