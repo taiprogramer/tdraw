@@ -1,0 +1,20 @@
+BEGIN ISSUE
+[Id]
+May2220221151
+
+[Title]
+Remove scrolling (both vertical & horizontal)
+
+[Tags]
+- enhancement
+
+[Description]
+I think It'll be better for UX.
+
+[Status]
+Open
+
+[Maintainers]
+- taiprogramer
+
+END ISSUE
