@@ -9,12 +9,19 @@ document.addEventListener('DOMContentLoaded', () => {
     let lines = []
     let svg = null
 
+    // this is hard-coded because I don't know how to get width of scroll bar.
+    const SCROLL_BAR_WIDTH = 20 // hard-coded
+    const toolBarRef = document.getElementById('tool_bar')
+
     function render() {
         // Create the selection area.
         svg = d3
             .select('#draw')
-            .attr('width', window.outerWidth)
-            .attr('height', window.outerHeight)
+            .attr('width', window.innerWidth - SCROLL_BAR_WIDTH)
+            .attr(
+                'height',
+                window.innerHeight - toolBarRef.offsetHeight - SCROLL_BAR_WIDTH
+            )
 
         svg.on('mousedown', function () {
             draw = true
