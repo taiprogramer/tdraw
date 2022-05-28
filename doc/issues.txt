@@ -12,9 +12,12 @@ Remove scrolling (both vertical & horizontal)
 I think It'll be better for UX.
 
 [Status]
-Open
+Closed
 
 [Maintainers]
 - taiprogramer
+
+[Commits]
+- b01d0d051fbe5f0b3ae85a648cd500b266bd0108
 
 END ISSUE
